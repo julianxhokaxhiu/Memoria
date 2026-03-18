@@ -150,7 +150,10 @@ namespace Memoria.MSBuild
             String sourceFilePath = Path.GetFullPath(Path.Combine(TargetDir, sourceFileRelativePath));
             FileInfo sourceFile = new FileInfo(sourceFilePath);
             if (!sourceFile.Exists)
+            {
+                _log.LogMessage("Could not find: {0}\\{1}", TargetDir, sourceFilePath);
                 return;
+            }
 
             PrepairPackFile(sourceFile.FullName, targetFileRelativePath, output, bw, pathMap, ref uncompressedDataSize);
         }
